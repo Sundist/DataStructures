@@ -1,8 +1,9 @@
 package sorting.generic;
 
-public class SelectionGSort {
+public class SelectionGSort<T extends Comparable<T>> implements SortG<T> {
     /** The method for sorting the numbers */
-    public static <T extends Comparable<T>> void sort(T[] list) {
+    @Override
+    public void sort(T[] list) {
         for (int i = 0; i < list.length - 1; i++) {
             // Find the minimum in the list[i..list.length-1]
             T currentMin = list[i];
@@ -21,5 +22,10 @@ public class SelectionGSort {
                 list[i] = currentMin;
             }
         }
+    }
+
+    @Override
+    public String name() {
+        return "Selction Generic";
     }
 }

@@ -1,7 +1,8 @@
 package sorting;
 
-public class InsertionSort {
-    public static void sort(int[] array) {
+public class InsertionSort implements Sort {
+    @Override
+    public void sort(int[] array) {
         for (int i = 1; i < array.length - 1; i++) {
             int currentElement = array[i];
             int j = i - 1;
@@ -11,5 +12,9 @@ public class InsertionSort {
             }
             array[j + 1] = currentElement;
         }
+    }
+    @Override
+    public String name() {
+        return "Insertion";
     }
 }

@@ -1,8 +1,6 @@
 package sorting;
 
-import sorting.generic.BubbleGsort;
-import sorting.generic.InsertionGSort;
-import sorting.generic.SelectionGSort;
+import sorting.generic.*;
 
 import java.util.Arrays;
 import java.util.Random;
@@ -10,124 +8,52 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        int[] array_100 = new int[100];
-        int[] array_1000 = new int[1000];
-        Random random = new Random();
+        Sort[] sortAlgorithms = {new InsertionSort(), new SelectionSort(), new BubbleSort()};
+        @SuppressWarnings("unchecked")
+        SortG<Integer>[] sortGAlgorithms = new SortG[]{new InsertionGSort<Integer>(), new SelectionGSort<Integer>(), new BubbleGSort<Integer>()};
 
-        System.out.println("For 100 Integer elements");
-        for (int i = 0; i < array_100.length; i++) {
-            array_100[i] = random.nextInt(Integer.MAX_VALUE);
-            //System.out.print(" " + array_100[i]);
+        for (int N = 1000; N <= 100_000; N *= 10) {
+            long start, end;
+            start = System.currentTimeMillis();
+            int[] array = new Random().ints(N, 0, Integer.MAX_VALUE).toArray();
+            end = System.currentTimeMillis();
+            System.out.println("\n" + N + " array generation time: " + (end - start));
+
+            int[] a = array.clone();
+            start = System.currentTimeMillis();
+            Arrays.sort(a);
+            end = System.currentTimeMillis();
+            System.out.println("Execution Time Java Sort: " + (end - start));
+
+            for (Sort sortAlgo: sortAlgorithms) {
+                a = array.clone();
+                start = System.currentTimeMillis();
+                sortAlgo.sort(a);
+                end = System.currentTimeMillis();
+                System.out.println("Execution Time " + sortAlgo.name() + ": " + (end - start));
+            }
+
+            start = System.currentTimeMillis();
+            Integer[] intArray = new Integer[N];
+            for (int i = 0; i < N; i++) {
+                intArray[i] = (int) (Math.random() * Integer.MAX_VALUE);
+            }
+            end = System.currentTimeMillis();
+            System.out.println("\n" + N + " Integer array generation time: " + (end - start));
+
+            Integer[] ia = intArray.clone();
+            start = System.currentTimeMillis();
+            Arrays.sort(a);
+            end = System.currentTimeMillis();
+            System.out.println("Execution Time Java Sort: " + (end - start));
+            for (SortG<Integer> sortGAlgo: sortGAlgorithms) {
+                ia = intArray.clone();
+                start = System.currentTimeMillis();
+                sortGAlgo.sort(ia);
+                end = System.currentTimeMillis();
+                System.out.println("Execution Time " + sortGAlgo.name() + ": " + (end - start));
+            }
         }
-        int[] arr = array_100.clone();
-        long start = System.nanoTime();
-        SelectionSort.sort(arr);
-        long elapsed = System.nanoTime() - start;
-        //System.out.println(Arrays.toString(arr));
-        System.out.println("Execution Time SelectionSort: " + elapsed);
-
-        arr = array_100.clone();
-        start = System.nanoTime();
-        InsertionSort.sort(arr);
-        elapsed = System.nanoTime() - start;
-        //System.out.println(Arrays.toString(arr));
-        System.out.println("Execution Time InsertionSort: " + elapsed);
-
-        arr = array_100.clone();
-        start = System.nanoTime();
-        BubbleSort.sort(arr);
-        elapsed = System.nanoTime() - start;
-        //System.out.println(Arrays.toString(arr));
-        System.out.println("Execution Time BubbleSort: " + elapsed);
-
-        System.out.println("For 1000 Integer elements");
-        for (int i = 0; i < array_1000.length; i++) {
-            array_1000[i] = random.nextInt(Integer.MAX_VALUE);
-            //System.out.print(" " + array_1000[i]);
-        }
-        int[] array = array_1000.clone();
-        start = System.nanoTime();
-        SelectionSort.sort(array);
-        elapsed = System.nanoTime() - start;
-        //System.out.println(Arrays.toString(array));
-        System.out.println("Execution Time SelectionSort: " + elapsed);
-
-        array = array_1000.clone();
-        start = System.nanoTime();
-        InsertionSort.sort(array);
-        elapsed = System.nanoTime() - start;
-        //System.out.println(Arrays.toString(array));
-        System.out.println("Execution Time InsertionSort: " + elapsed);
-
-        array = array_1000.clone();
-        start = System.nanoTime();
-        BubbleSort.sort(array);
-        elapsed = System.nanoTime() - start;
-        //System.out.println(Arrays.toString(array));
-        System.out.println("Execution Time BubbleSort: " + elapsed);
-
-        System.out.println("For 100 G Double elements");
-        Double[] arrayDouble_100 = new Double[100];
-        for (int i = 0; i < arrayDouble_100.length; i++) {
-            arrayDouble_100[i] = random.nextDouble(Double.MAX_VALUE);
-            //System.out.print(arrayDouble_100[i] + " ");
-        }
-        Double[] arrayDouble = arrayDouble_100.clone();
-        start = System.nanoTime();
-        SelectionGSort.sort(arrayDouble);
-        elapsed = System.nanoTime() - start;
-        //System.out.println(Arrays.toString(arrayDouble));
-        System.out.println("Execution Time SelectionGSort: " + elapsed);
-
-        arrayDouble = arrayDouble_100.clone();
-        start = System.nanoTime();
-        InsertionGSort.sort(arrayDouble);
-        elapsed = System.nanoTime() - start;
-        //System.out.println(Arrays.toString(arrayDouble));
-        System.out.println("Execution Time InsertionGSort: " + elapsed);
-
-        arrayDouble = arrayDouble_100.clone();
-        start = System.nanoTime();
-        BubbleGsort.sort(arrayDouble);
-        elapsed = System.nanoTime() - start;
-        //System.out.println(Arrays.toString(arrayDouble));
-        System.out.println("Execution Time BubbleGGort: " + elapsed);
-
-        System.out.println("For 1000 G Double elements");
-        Double[] arrayDouble_1000 = new Double[1000];
-        for (int i = 0; i < arrayDouble_1000.length; i++) {
-            arrayDouble_1000[i] = random.nextDouble(Double.MAX_VALUE);
-            //System.out.print(arrayDouble_100[i] + " ");
-        }
-        Double[] arrDouble = arrayDouble_1000.clone();
-        start = System.nanoTime();
-        SelectionGSort.sort(arrDouble);
-        elapsed = System.nanoTime() - start;
-        //System.out.println(Arrays.toString(arrDouble));
-        System.out.println("Execution Time SelectionGSort: " + elapsed);
-
-        arrDouble = arrayDouble_1000.clone();
-        start = System.nanoTime();
-        InsertionGSort.sort(arrDouble);
-        elapsed = System.nanoTime() - start;
-        //System.out.println(Arrays.toString(arrDouble));
-        System.out.println("Execution Time InsertionGSort: " + elapsed);
-
-        arrDouble = arrayDouble_1000.clone();
-        start = System.nanoTime();
-        BubbleGsort.sort(arrDouble);
-        elapsed = System.nanoTime() - start;
-        //System.out.println(Arrays.toString(arrDouble));
-        System.out.println("Execution Time BubbleGSort: " + elapsed);
-
-       /* String[] arrayStr = {"Istanbul", "Ankara", "Adana", "Canakkale"};
-        SelectionGSort.sort(arrayStr);
-        System.out.println(Arrays.toString(arrayStr));
-
-        Student[] arrayStudent = {new Student("Mehmet"), new Student("Ayse")};
-        SelectionGSort.sort(arrayStudent);
-        System.out.println(Arrays.toString(arrayStudent));
-*/
 
     }
 

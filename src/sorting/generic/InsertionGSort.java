@@ -1,7 +1,8 @@
 package sorting.generic;
 
-public class InsertionGSort {
-    public static <T extends Comparable<T>> void sort(T[] array) {
+public class InsertionGSort<T extends Comparable<T>> implements SortG<T> {
+    @Override
+    public void sort(T[] array) {
         for (int i = 1; i < array.length - 1; i++) {
             T current = array[i];
             int j = i - 1;
@@ -11,5 +12,10 @@ public class InsertionGSort {
             }
             array[j + 1] = current;
         }
+    }
+
+    @Override
+    public String name() {
+        return "Insertion Generic";
     }
 }

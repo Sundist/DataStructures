@@ -1,10 +1,9 @@
 package sorting;
 
-public class SelectionSort {
-    /** The method for sorting the numbers */
-    public static void sort(int[] list) {
+public class SelectionSort implements Sort {
+    @Override
+    public void sort(int[] list) {
         for (int i = 0; i < list.length - 1; i++) {
-            // Find the minimum in the list[i..list.length-1]
             int currentMin = list[i];
             int currentMinIndex = i;
 
@@ -21,5 +20,9 @@ public class SelectionSort {
                 list[i] = currentMin;
             }
         }
+    }
+    @Override
+    public String name() {
+        return "Selection";
     }
 }
