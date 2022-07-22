@@ -2,12 +2,11 @@ package sorting;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 
-public class TestBubbleSort {
+public class TestSort {
 
     @Test
     public void testBubbleSortSimple() {
@@ -46,5 +45,31 @@ public class TestBubbleSort {
         bs.sort(arr);
 
         assertArrayEquals(sorted, arr);
+    }
+
+    @Test
+    public void testQuickSortSimple() {
+        int[] arr = {5, 6, 2, -1, 2};
+
+        int[] sorted = arr.clone();
+        Arrays.sort(sorted);
+
+        Sort qs = new QuickSort();
+        qs.sort(arr);
+
+        assertArrayEquals(arr, sorted);
+    }
+
+    @Test
+    public void testMergeSortSimple() {
+        int[] arr = {5, 6, 2, -1, 2};
+
+        int[] sorted = arr.clone();
+        Arrays.sort(sorted);
+
+        Sort ms = new MergeSort();
+        ms.sort(arr);
+
+        assertArrayEquals(arr, sorted);
     }
 }

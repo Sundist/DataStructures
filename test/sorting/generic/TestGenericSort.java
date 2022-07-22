@@ -1,8 +1,5 @@
 package sorting.generic;
 
-import sorting.Sort;
-import sorting.generic.*;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
@@ -10,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 
 
-public class TestSort {
+public class TestGenericSort {
 
     @Test
     public void testBubbleGSort() {
