@@ -8,9 +8,11 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        Sort[] sortAlgorithms = {new InsertionSort(), new SelectionSort(), new BubbleSort()};
+        Sort[] sortAlgorithms = {new InsertionSort(), new SelectionSort(), new BubbleSort(),
+                new QuickSort(), new MergeSort()};
         @SuppressWarnings("unchecked")
-        SortG<Integer>[] sortGAlgorithms = new SortG[]{new InsertionGSort<Integer>(), new SelectionGSort<Integer>(), new BubbleGSort<Integer>()};
+        SortG<Integer>[] sortGAlgorithms = new SortG[]{new InsertionGSort<Integer>(), new SelectionGSort<Integer>(),
+                new BubbleGSort<Integer>(), new QuickGSort<Integer>(), new MergeGSort<Integer>()};
 
         for (int N = 1000; N <= 100_000; N *= 10) {
             long start, end;
@@ -25,7 +27,7 @@ public class Main {
             end = System.currentTimeMillis();
             System.out.println("Execution Time Java Sort: " + (end - start));
 
-            for (Sort sortAlgo: sortAlgorithms) {
+            for (Sort sortAlgo : sortAlgorithms) {
                 a = array.clone();
                 start = System.currentTimeMillis();
                 sortAlgo.sort(a);
@@ -46,7 +48,7 @@ public class Main {
             Arrays.sort(a);
             end = System.currentTimeMillis();
             System.out.println("Execution Time Java Sort: " + (end - start));
-            for (SortG<Integer> sortGAlgo: sortGAlgorithms) {
+            for (SortG<Integer> sortGAlgo : sortGAlgorithms) {
                 ia = intArray.clone();
                 start = System.currentTimeMillis();
                 sortGAlgo.sort(ia);

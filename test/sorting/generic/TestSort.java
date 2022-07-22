@@ -1,5 +1,6 @@
 package sorting.generic;
 
+import sorting.Sort;
 import sorting.generic.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -51,10 +52,28 @@ public class TestSort {
     }
 
     @Test
-    public void testQuickSort() {
+    public void testQuickGSort() {
         Integer[] arr = new Integer[]{5, 2, -1, 2, 3};
 
         Integer[] sorted = arr.clone();
         Arrays.sort(sorted);
+
+        SortG qgs = new QuickGSort();
+        qgs.sort(arr);
+
+        assertArrayEquals(arr, sorted);
+    }
+
+    @Test
+    public void testMergeGSort() {
+        Integer[] arr = new Integer[]{5, 2, -1, 2, 3};
+
+        Integer[] sorted = arr.clone();
+        Arrays.sort(sorted);
+
+        SortG mgs = new MergeGSort();
+        mgs.sort(arr);
+
+        assertArrayEquals(arr, sorted);
     }
 }
