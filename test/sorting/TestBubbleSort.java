@@ -31,6 +31,7 @@ public class TestBubbleSort {
 
         Sort bs = new InsertionSort();
         bs.sort(arr);
+
         assertArrayEquals(sorted, arr);
     }
 
