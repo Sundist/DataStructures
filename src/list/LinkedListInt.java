@@ -31,7 +31,7 @@ public class LinkedListInt extends AbstractListInt {
 
     @Override
     public boolean remove(int data) {
-
+        Node iter = head;
         return false;
     }
 
