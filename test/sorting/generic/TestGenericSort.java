@@ -42,8 +42,9 @@ public class TestGenericSort {
         Integer[] sorted = arr.clone();
         Arrays.sort(sorted);
 
-        SortG sgs = new SelectionGSort();
+        SortG<Integer> sgs = new SelectionGSort<>();
         sgs.sort(arr);
+
 
         assertArrayEquals(arr, sorted);
     }
