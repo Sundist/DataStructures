@@ -39,6 +39,7 @@ public class LinkedListInt extends AbstractListInt {
         temp.next = iter.next;
         iter.next = temp.next.next;
         temp.next.next = null;
+        size--;
         return true;
     }
 
@@ -53,6 +54,7 @@ public class LinkedListInt extends AbstractListInt {
         temp.next = iter.next;
         iter.next = temp.next.next;
         temp.next.next = null;
+        size--;
         return temp.next.data;
     }
 
