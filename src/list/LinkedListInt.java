@@ -1,6 +1,8 @@
 package list;
 
 
+import java.io.IOException;
+
 public class LinkedListInt extends AbstractListInt {
     private Node head;
 
@@ -26,20 +28,32 @@ public class LinkedListInt extends AbstractListInt {
             head = node;
         }
         size++;
-
     }
 
     @Override
     public boolean remove(int data) {
         Node iter = head;
-        return false;
+        while (iter.next.data != data)
+            iter = iter.next;
+        Node temp = iter;
+        temp.next = iter.next;
+        iter.next = temp.next.next;
+        temp.next.next = null;
+        return true;
     }
 
     @Override
     public int removeIndex(int index) {
         if (index >= size)
             throw new IndexOutOfBoundsException("Girdiğiniiz index eleman sayısından fazladır.");
-        return 0;
+        Node iter = head;
+        for (int i = 0; i < index; i++)
+            iter = iter.next;
+        Node temp = iter;
+        temp.next = iter.next;
+        iter.next = temp.next.next;
+        temp.next.next = null;
+        return temp.next.data;
     }
 
     @Override
