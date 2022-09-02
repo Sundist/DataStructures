@@ -27,19 +27,30 @@ public class BSTreeInt implements TreeIntInterface {
         return false;
     }
 
-    @Override
     public void printInOrder() {
-
+        if (root != null) {
+            root = root.left;
+            System.out.print(root.data + " ");
+            root = root.right;
+        }
     }
 
     @Override
     public void printPreOrder() {
-
+        if (root != null) {
+            System.out.print(root.data + " ");
+            root = root.left;
+            root = root.right;
+        }
     }
 
     @Override
     public void printPostOrder() {
-
+        if (root != null) {
+            root = root.left;
+            root = root.right;
+            System.out.print(root.data + " ");
+        }
     }
 
 
@@ -82,14 +93,5 @@ class Node {
             else right = new Node(data);
         }
     }
-
-    public void printInOrder(Node root) {
-        if (root == null)
-            return;
-        printInOrder(root.left);
-        System.out.println(root.data + " ");
-        printInOrder(root.right);
-    }
-
 
 }
