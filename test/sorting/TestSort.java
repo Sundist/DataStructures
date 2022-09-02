@@ -57,7 +57,7 @@ public class TestSort {
         Sort qs = new QuickSort();
         qs.sort(arr);
 
-        assertArrayEquals(arr, sorted);
+        assertArrayEquals(sorted, arr);
     }
 
     @Test

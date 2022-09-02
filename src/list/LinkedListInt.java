@@ -33,8 +33,10 @@ public class LinkedListInt extends AbstractListInt {
     @Override
     public boolean remove(int data) {
         Node iter = head;
-        while (iter.next.data != data)
+        while (iter.next != null && iter.next.data != data)
             iter = iter.next;
+        if (iter.next == null)
+            return false;
         Node temp = iter;
         temp.next = iter.next;
         iter.next = temp.next.next;
