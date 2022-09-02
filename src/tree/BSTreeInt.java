@@ -6,8 +6,7 @@ public class BSTreeInt implements TreeIntInterface {
 
     @Override
     public void add(int data) {
-        if (root == null)
-            root = new Node(data);
+        if (root == null) root = new Node(data);
         else root.add(data);
     }
 
@@ -18,6 +17,13 @@ public class BSTreeInt implements TreeIntInterface {
 
     @Override
     public boolean contains(int data) {
+        Node current = root;
+        if (current == null) return false;
+        while (current != null) {
+            if (data < current.data) current = current.left;
+            else if (data > current.data) current = current.right;
+            else return true;
+        }
         return false;
     }
 
@@ -59,21 +65,31 @@ class Node {
     Node left;
     Node right;
 
+    Node() {
+        data = 0;
+    }
+
     Node(int data) {
         this.data = data;
     }
 
     public void add(int data) {
         if (data < this.data) {
-            if (left != null)
-                this.left.add(data);
-            else
-                left = new Node(data);
+            if (left != null) this.left.add(data);
+            else left = new Node(data);
         } else if (data > this.data) {
-            if (right != null)
-                this.right.add(data);
-            else
-                right = new Node(data);
+            if (right != null) this.right.add(data);
+            else right = new Node(data);
         }
     }
+
+    public void printInOrder(Node root) {
+        if (root == null)
+            return;
+        printInOrder(root.left);
+        System.out.println(root.data + " ");
+        printInOrder(root.right);
+    }
+
+
 }
