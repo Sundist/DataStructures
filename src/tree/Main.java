@@ -5,7 +5,6 @@ import java.util.Random;
 public class Main {
     public static void main(String[] args) {
         BSTreeInt tree = new BSTreeInt();
-
         for (int i = 0; i < 10; i++) {
             int num = new Random().nextInt(1, 1_000_000_000);
             tree.add(num);
