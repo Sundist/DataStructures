@@ -1,10 +1,10 @@
 package list;
 
-public class DoublyLinnkedListInt extends AbstractListInt{
+public class DoublyLinkedListInt extends AbstractListInt{
 
     private Node head;
 
-    DoublyLinnkedListInt(){
+    DoublyLinkedListInt(){
 
     }
 
