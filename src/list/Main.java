@@ -12,6 +12,15 @@ public class Main {
             list.add(random.nextInt(10000));
             System.out.print(list.get(i) + " ");
         }
+        System.out.println("\nSize:" + list.size());
+
+        System.out.print("\n\nDoubly Linked List\n");
+        DoublyLinkedListInt dlist = new DoublyLinkedListInt();
+        for (int i = 0; i < SIZE; i++) {
+            dlist.add(random.nextInt(10000));
+            System.out.print(dlist.get(i) + " ");
+        }
+        System.out.println("\nSize: " + dlist.size());
     }
 
 }
