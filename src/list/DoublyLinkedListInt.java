@@ -27,6 +27,7 @@ public class DoublyLinkedListInt extends AbstractListInt {
             iter.next.prev = iter;
         } else {
             head = node;
+            tail = node;
         }
         size++;
     }
