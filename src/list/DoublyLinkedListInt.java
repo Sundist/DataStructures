@@ -1,21 +1,34 @@
 package list;
 
-public class DoublyLinkedListInt extends AbstractListInt{
+public class DoublyLinkedListInt extends AbstractListInt {
 
-    private Node head;
+    private DoublyLinkedListNode head;
+    private DoublyLinkedListNode tail;
 
-    DoublyLinkedListInt(){
-
+    DoublyLinkedListInt() {
+        init();
     }
 
     @Override
     protected void init() {
-
+        head = null;
+        tail = null;
     }
 
     @Override
     public void add(int data) {
+        DoublyLinkedListNode node = new DoublyLinkedListNode(data);
 
+        if (head != null) {
+            DoublyLinkedListNode iter = head;
+            while (iter.next != null)
+                iter = iter.next;
+            iter.next = node;
+            iter.next.prev = iter;
+        } else {
+            head = node;
+        }
+        size++;
     }
 
     @Override
@@ -37,4 +50,15 @@ public class DoublyLinkedListInt extends AbstractListInt{
     public int indexOf(int data) {
         return 0;
     }
+}
+
+class DoublyLinkedListNode {
+    int data;
+    DoublyLinkedListNode prev;
+    DoublyLinkedListNode next;
+
+    public DoublyLinkedListNode(int data) {
+        this.data = data;
+    }
+
 }

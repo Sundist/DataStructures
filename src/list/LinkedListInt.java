@@ -86,7 +86,7 @@ public class LinkedListInt extends AbstractListInt {
     }
 }
 
-class Node {
+ class Node {
     int data;
     Node next;
 
