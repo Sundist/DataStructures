@@ -18,16 +18,17 @@ public class DoublyLinkedListInt extends AbstractListInt {
     @Override
     public void add(int data) {
         DoublyLinkedListNode node = new DoublyLinkedListNode(data);
-
-        if (head != null) {
+        if (head == null) {
+            head = node;
+            node.prev = tail;
+            node.next = null;
+        } else {
             DoublyLinkedListNode iter = head;
             while (iter.next != null)
                 iter = iter.next;
             iter.next = node;
-            iter.next.prev = iter;
-        } else {
-            head = node;
-            tail = node;
+            node.prev = iter;
+            node.next = null;
         }
         size++;
     }
@@ -44,12 +45,23 @@ public class DoublyLinkedListInt extends AbstractListInt {
 
     @Override
     public int get(int index) {
-        return 0;
+        if (index >= size)
+            throw new IndexOutOfBoundsException("Girdiğiniiz index eleman sayısından fazladır.");
+        DoublyLinkedListNode iter = head;
+        for (int i = 0; i < index; i++)
+            iter = iter.next;
+        return iter.data;
     }
 
     @Override
     public int indexOf(int data) {
-        return 0;
+        DoublyLinkedListNode iter = head;
+        int counter = 0;
+        while (iter.data != data) {
+            counter++;
+            iter = iter.next;
+        }
+        return counter;
     }
 }
 
