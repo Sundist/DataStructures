@@ -22,6 +22,7 @@ public class CircularLinkedListInt extends AbstractListInt {
             iter.next = node;
         } else {
             head = node;
+            head.next = node;
         }
         size++;
     }
