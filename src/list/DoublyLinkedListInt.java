@@ -35,7 +35,17 @@ public class DoublyLinkedListInt extends AbstractListInt {
 
     @Override
     public boolean remove(int data) {
-        if (head != null) {
+
+        //ilk eleman
+        if (head.data == data) {
+            DoublyLinkedListNode iter = head;
+            head = iter.next;
+            size--;
+            return true;
+        }
+
+        // ortadaki eleman
+        else if (head.next != null) {
             DoublyLinkedListNode iter = head;
             while (iter.data != data && iter != null)
                 iter = iter.next;
@@ -44,8 +54,18 @@ public class DoublyLinkedListInt extends AbstractListInt {
             temp.next.prev = iter;
             size--;
             return true;
-        } else {
-            return false;
+        }
+
+        // son eleman
+        else {
+            DoublyLinkedListNode iter = head;
+            while (iter.next.data != data)
+                iter = iter.next;
+            DoublyLinkedListNode temp = iter.next;
+            temp.prev = null;
+            iter.next = temp.next;
+            size--;
+            return true;
         }
     }
 
