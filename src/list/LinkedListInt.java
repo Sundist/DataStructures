@@ -32,15 +32,13 @@ public class LinkedListInt extends AbstractListInt {
 
     @Override
     public boolean remove(int data) {
-        // Ilk Eleman
+
         if (head.data == data) {
             Node iter = head;
             head = iter.next;
             size--;
             return true;
-        }
-        // ortadaki Eleman
-        else if (head.next != null) {
+        } else if (head.next != null) {
             Node iter = head;
             while (iter.next != null && iter.next.data != data)
                 iter = iter.next;
@@ -50,10 +48,7 @@ public class LinkedListInt extends AbstractListInt {
             temp.next.next = null;
             size--;
             return true;
-        }
-
-        // son elemansa
-        else {
+        } else {
             Node iter = head;
             while (iter.next.data != data)
                 iter = iter.next;
