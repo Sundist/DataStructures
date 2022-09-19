@@ -62,7 +62,7 @@ public class LinkedGenericList extends AbstractGenericList {
 
     @Override
     public void clear() {
-
+        head = null;
     }
 }
 
