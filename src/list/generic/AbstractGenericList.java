@@ -1,48 +1,48 @@
 package list.generic;
 
-public class ArrayGenericList extends AbstractGenericList {
+public abstract class AbstractGenericList implements GenericList {
     @Override
     public void add(Comparable data) {
-        super.add(data);
+
     }
 
     @Override
     public boolean remove(Comparable data) {
-        return super.remove(data);
+        return false;
     }
 
     @Override
     public Comparable removeIndex(Comparable index) {
-        return super.removeIndex(index);
+        return null;
     }
 
     @Override
     public Comparable get(Comparable index) {
-        return super.get(index);
+        return null;
     }
 
     @Override
     public boolean contains(Comparable data) {
-        return super.contains(data);
+        return false;
     }
 
     @Override
     public int indexOf(Comparable data) {
-        return super.indexOf(data);
+        return 0;
     }
 
     @Override
     public int size() {
-        return super.size();
+        return 0;
     }
 
     @Override
     public boolean isEmpty() {
-        return super.isEmpty();
+        return false;
     }
 
     @Override
     public void clear() {
-        super.clear();
+
     }
 }

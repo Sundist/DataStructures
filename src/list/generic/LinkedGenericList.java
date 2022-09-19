@@ -1,6 +1,6 @@
 package list.generic;
 
-public class LinkedGenericList implements GenericList {
+public class LinkedGenericList extends AbstractGenericList {
 
     private int size;
     private Node head;
@@ -8,7 +8,18 @@ public class LinkedGenericList implements GenericList {
 
     @Override
     public void add(Comparable data) {
-
+        if (head == null) {
+            Node root = new Node(data);
+            root.next = null;
+        } else {
+            Node iter = head;
+            while (iter.next != null)
+                iter = iter.next;
+            Node temp = new Node(data);
+            iter.next = temp;
+            temp.next = null;
+        }
+        size++;
     }
 
     @Override

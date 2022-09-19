@@ -1,8 +1,6 @@
 package list;
 
 
-import java.io.IOException;
-
 public class LinkedListInt extends AbstractListInt {
     private Node head;
 
