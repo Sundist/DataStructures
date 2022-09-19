@@ -1,6 +1,10 @@
 package list.generic;
 
 public abstract class AbstractGenericList implements GenericList {
+
+    protected int size;
+    protected abstract void init();
+
     @Override
     public void add(Comparable data) {
 

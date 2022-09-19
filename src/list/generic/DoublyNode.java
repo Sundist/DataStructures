@@ -4,8 +4,8 @@ public class DoublyNode<T> {
 
     T data;
 
-    DoublyNode next;
-    DoublyNode prev;
+    DoublyNode head;
+    DoublyNode tail;
 
     public DoublyNode(T data) {
         this.data = data;

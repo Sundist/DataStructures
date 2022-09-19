@@ -2,22 +2,27 @@ package list.generic;
 
 public class LinkedGenericList extends AbstractGenericList {
 
-    private int size;
     private Node head;
 
+    public LinkedGenericList() {
+        init();
+    }
+
+    @Override
+    protected void init() {
+        head = null;
+    }
 
     @Override
     public void add(Comparable data) {
-        if (head == null) {
-            Node root = new Node(data);
-            root.next = null;
-        } else {
+        Node temp = new Node<>(data);
+        if (head != null) {
             Node iter = head;
             while (iter.next != null)
                 iter = iter.next;
-            Node temp = new Node(data);
             iter.next = temp;
-            temp.next = null;
+        } else {
+            head = temp;
         }
         size++;
     }

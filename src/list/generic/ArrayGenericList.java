@@ -1,6 +1,23 @@
 package list.generic;
 
 public class ArrayGenericList extends AbstractGenericList {
+
+    private final static int DEFAULT_CAPACITY = 16;
+    private Integer[] array;
+
+    public ArrayGenericList() {
+        init();
+    }
+
+    public ArrayGenericList(int capacity) {
+        array = new Integer[capacity];
+    }
+
+    @Override
+    protected void init() {
+        array = new Integer[DEFAULT_CAPACITY];
+    }
+
     @Override
     public void add(Comparable data) {
         super.add(data);

@@ -2,6 +2,19 @@ package list.generic;
 
 public class DoublyGenericList extends AbstractGenericList {
 
+    private DoublyNode head;
+    private DoublyNode tail;
+
+    public DoublyGenericList() {
+        init();
+    }
+
+    @Override
+    protected void init() {
+        head = null;
+        tail = null;
+    }
+
     @Override
     public void add(Comparable data) {
         super.add(data);
