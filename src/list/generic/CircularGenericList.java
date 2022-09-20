@@ -1,14 +1,43 @@
 package list.generic;
 
 public class CircularGenericList extends ArrayGenericList {
+
+    private GenericNode head;
+
+    CircularGenericList() {
+        init();
+    }
+
+    @Override
+    protected void init() {
+        head = null;
+    }
+
     @Override
     public void add(Comparable data) {
-        super.add(data);
+        GenericNode node = new GenericNode(data);
+        if (head != null) {
+            GenericNode iter = head;
+            while (iter.next != head) iter = iter.next;
+            iter.next = node;
+            node.next = head;
+        } else {
+            head = node;
+            node.next = head;
+        }
+        size++;
     }
 
     @Override
     public boolean remove(Comparable data) {
-        return super.remove(data);
+        if (head != null) {
+            GenericNode iter = head;
+            while (iter.next.data != data) iter = iter.next;
+            iter.next = iter.next.next;
+            size--;
+            return true;
+        }
+        return false;
     }
 
     @Override

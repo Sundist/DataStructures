@@ -1,7 +1,6 @@
 package sorting.generic;
 
 public class SelectionGSort<T extends Comparable<T>> implements SortG<T> {
-    /** The method for sorting the numbers */
     @Override
     public void sort(T[] list) {
         for (int i = 0; i < list.length - 1; i++) {

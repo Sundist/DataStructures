@@ -1,6 +1,5 @@
 package list.generic;
 
-import list.ListInt;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

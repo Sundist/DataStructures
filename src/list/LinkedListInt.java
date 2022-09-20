@@ -1,9 +1,7 @@
 package list;
 
-
 public class LinkedListInt extends AbstractListInt {
     private Node head;
-
 
     public LinkedListInt() {
         init();
@@ -17,7 +15,6 @@ public class LinkedListInt extends AbstractListInt {
     @Override
     public void add(int data) {
         Node node = new Node(data);
-
         if (head != null) {
             Node iter = head;
             while (iter.next != null) iter = iter.next;
