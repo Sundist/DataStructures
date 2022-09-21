@@ -15,7 +15,7 @@ public abstract class GenericListTest {
         Integer[] array = addAllToList(list);
 
         for (int i = 0; i < array.length; i++) {
-            assertEquals(array[i], (Integer) list.get(i));
+            assertEquals((Integer) array[i], (Integer) list.get(i));
         }
     }
 

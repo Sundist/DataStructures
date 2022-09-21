@@ -1,5 +1,7 @@
 package list.generic;
 
+import com.sun.jdi.IntegerValue;
+
 public class CircularGenericList extends ArrayGenericList {
 
     private GenericNode head;
@@ -36,13 +38,22 @@ public class CircularGenericList extends ArrayGenericList {
             iter.next = iter.next.next;
             size--;
             return true;
-        }
-        return false;
+        } else
+            return false;
     }
 
     @Override
     public Comparable removeIndex(Comparable index) {
-        return super.removeIndex(index);
+        if (head != null) {
+            GenericNode iter = head;
+            for (int i = 0; i < (int) index; i++)
+                iter = iter.next;
+            GenericNode temp = iter.next;
+            iter.next = temp.next;
+            temp.next = null;
+            size--;
+            return (Integer) temp.data;
+        } else return Integer.MIN_VALUE;
     }
 
     @Override
