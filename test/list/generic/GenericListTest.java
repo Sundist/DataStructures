@@ -42,8 +42,7 @@ public abstract class GenericListTest {
 
     private Integer[] addAllToList(GenericList list) {
         Integer[] array = {1, 2, 3, 4, 5};
-        for (Integer a : array
-        ) {
+        for (Integer a : array) {
             list.add(a);
         }
         return array;

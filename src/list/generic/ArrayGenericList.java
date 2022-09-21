@@ -1,5 +1,7 @@
 package list.generic;
 
+import java.util.Arrays;
+
 public class ArrayGenericList extends AbstractGenericList {
 
     private final static int DEFAULT_CAPACITY = 16;
@@ -20,7 +22,10 @@ public class ArrayGenericList extends AbstractGenericList {
 
     @Override
     public void add(Comparable data) {
-        super.add(data);
+        if (size >= array.length) {
+            array = Arrays.copyOf(array,array.length*2);
+        }
+        array[size++] = (Integer) data;
     }
 
     @Override
