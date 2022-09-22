@@ -1,10 +1,16 @@
 package tree.generic;
 
+import tree.generic.GenericNode;
+
 public class BSTreeGenericInt<T extends Comparable<T>> implements GenericTreeInterface {
+
+    private GenericNode root;
+    private int size;
 
     @Override
     public void add(Comparable data) {
-
+        if (root == null) root = new GenericNode(data);
+        else root.add(data);
     }
 
     @Override
@@ -47,3 +53,5 @@ public class BSTreeGenericInt<T extends Comparable<T>> implements GenericTreeInt
 
     }
 }
+
+
