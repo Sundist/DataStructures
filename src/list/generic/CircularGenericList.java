@@ -21,8 +21,8 @@ public class CircularGenericList extends ArrayGenericList {
         if (head != null) {
             GenericNode iter = head;
             while (iter.next != head) iter = iter.next;
-            iter.next = node;
             node.next = head;
+            iter.next = node;
         } else {
             head = node;
             node.next = head;
@@ -43,7 +43,7 @@ public class CircularGenericList extends ArrayGenericList {
     }
 
     @Override
-    public Comparable removeIndex(Comparable index) {
+    public Comparable removeIndex(int index) {
         if (head != null) {
             GenericNode iter = head;
             for (int i = 0; i < (int) index; i++)
@@ -57,7 +57,7 @@ public class CircularGenericList extends ArrayGenericList {
     }
 
     @Override
-    public Comparable get(Comparable index) {
+    public Comparable get(int index) {
         return super.get(index);
     }
 

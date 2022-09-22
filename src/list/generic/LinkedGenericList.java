@@ -55,20 +55,18 @@ public class LinkedGenericList extends AbstractGenericList {
     }
 
     @Override
-    public Comparable removeIndex(Comparable index) {
-        return null;
+    public Comparable removeIndex(int index) {
+        return Integer.MIN_VALUE;
     }
 
     @Override
-    public Comparable get(Comparable index) {
-        if (index.compareTo(size) == 1)
+    public Comparable get(int index) {
+        if (index > size)
             throw new IndexOutOfBoundsException("Girdiğiniiz index eleman sayısından fazladır.");
         GenericNode iter = head;
-        int i = 0;
-        while (index.compareTo(i) == -1) {
+        for (int i = 0; i < index && iter.next != null; i++)
             iter = iter.next;
-            i++;
-        }
+
         return (Integer) iter.data;
     }
 
@@ -79,7 +77,16 @@ public class LinkedGenericList extends AbstractGenericList {
 
     @Override
     public int indexOf(Comparable data) {
-        return 0;
+        int counter = 0;
+        GenericNode iter = head;
+        if (head != null) {
+            while (iter.data != data && iter.next != null) {
+                iter = iter.next;
+                counter++;
+            }
+            return counter;
+        } else
+            return -1;
     }
 
     @Override

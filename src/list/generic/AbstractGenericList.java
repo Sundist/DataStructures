@@ -16,12 +16,12 @@ public abstract class AbstractGenericList implements GenericList {
     }
 
     @Override
-    public Comparable removeIndex(Comparable index) {
+    public Comparable removeIndex(int index) {
         return null;
     }
 
     @Override
-    public Comparable get(Comparable index) {
+    public Comparable get(int index) {
         return null;
     }
 

@@ -5,9 +5,9 @@ public interface GenericList<T extends Comparable<T>> {
 
     boolean remove(T data);
 
-    T removeIndex(T index);
+    T removeIndex(int index);
 
-    T get(T index);
+    T get(int index);
 
     boolean contains(T data);
 

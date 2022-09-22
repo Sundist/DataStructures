@@ -61,13 +61,22 @@ public class DoublyGenericList extends AbstractGenericList {
     }
 
     @Override
-    public Comparable removeIndex(Comparable index) {
-        return super.removeIndex(index);
+    public Comparable removeIndex(int index) {
+        if (head != null) {
+            return Integer.MAX_VALUE;
+        }
+        return Integer.MIN_VALUE;
     }
 
     @Override
-    public Comparable get(Comparable index) {
-        return super.get(index);
+    public Comparable get(int index) {
+        if (head != null) {
+            DoublyNode iter = head;
+            for (int i = 0; i < index && iter.next != null; i++)
+                iter = iter.next;
+            return (Integer) iter.data;
+        }
+        return Integer.MIN_VALUE;
     }
 
     @Override
@@ -83,7 +92,7 @@ public class DoublyGenericList extends AbstractGenericList {
 
     @Override
     public int indexOf(Comparable data) {
-        return super.indexOf(data);
+        return 0;
     }
 
     @Override

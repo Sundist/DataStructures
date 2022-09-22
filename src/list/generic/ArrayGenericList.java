@@ -23,29 +23,43 @@ public class ArrayGenericList extends AbstractGenericList {
     @Override
     public void add(Comparable data) {
         if (size >= array.length) {
-            array = Arrays.copyOf(array,array.length*2);
+            array = Arrays.copyOf(array, array.length * 2);
         }
         array[size++] = (Integer) data;
     }
 
     @Override
     public boolean remove(Comparable data) {
-        return super.remove(data);
+        if (!isEmpty() && contains(data)) {
+            int i = 0;
+            while (array[i] != data) i++;
+            for (int j = i; j < size - 1; j++) {
+                array[j] = array[j + 1];
+            }
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public Comparable removeIndex(Comparable index) {
-        return super.removeIndex(index);
+    public Comparable removeIndex(int index) {
+        return array[index];
     }
 
     @Override
-    public Comparable get(Comparable index) {
-        return super.get(index);
+    public Comparable get(int index) {
+        return array[index];
     }
 
     @Override
     public boolean contains(Comparable data) {
-        return super.contains(data);
+        if (array[0] != null) {
+            for (int i = 0; i < size; i++) {
+                if (array[i] == data)
+                    return true;
+            }
+        }
+        return false;
     }
 
     @Override
@@ -55,16 +69,17 @@ public class ArrayGenericList extends AbstractGenericList {
 
     @Override
     public int size() {
-        return super.size();
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return super.isEmpty();
+        return array[0] == null;
     }
 
     @Override
     public void clear() {
-        super.clear();
+        for (int i = 0; i < array.length; i++)
+            array[i] = null;
     }
 }
