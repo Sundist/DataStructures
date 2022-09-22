@@ -36,6 +36,7 @@ public class ArrayGenericList extends AbstractGenericList {
             for (int j = i; j < size - 1; j++) {
                 array[j] = array[j + 1];
             }
+            size--;
             return true;
         }
         return false;
@@ -55,8 +56,7 @@ public class ArrayGenericList extends AbstractGenericList {
     public boolean contains(Comparable data) {
         if (array[0] != null) {
             for (int i = 0; i < size; i++) {
-                if (array[i] == data)
-                    return true;
+                if (array[i] == data) return true;
             }
         }
         return false;

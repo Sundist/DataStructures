@@ -1,7 +1,5 @@
 package list.generic;
 
-import com.sun.jdi.IntegerValue;
-
 public class CircularGenericList extends ArrayGenericList {
 
     private GenericNode head;
@@ -20,12 +18,13 @@ public class CircularGenericList extends ArrayGenericList {
         GenericNode node = new GenericNode(data);
         if (head != null) {
             GenericNode iter = head;
-            while (iter.next != head) iter = iter.next;
+            while (iter.next != head)
+                iter = iter.next;
             node.next = head;
             iter.next = node;
         } else {
             head = node;
-            node.next = head;
+            head.next = node;
         }
         size++;
     }
