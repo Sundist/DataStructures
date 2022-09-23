@@ -11,6 +11,7 @@ public class BSTreeGenericInt<T extends Comparable<T>> implements GenericTreeInt
     public void add(Comparable data) {
         if (root == null) root = new GenericNode(data);
         else root.add(data);
+        size++;
     }
 
     @Override
@@ -20,37 +21,60 @@ public class BSTreeGenericInt<T extends Comparable<T>> implements GenericTreeInt
 
     @Override
     public void printInOrder() {
-
+        if (root != null) {
+            root = root.left;
+            System.out.print(root.data + " ");
+            root = root.right;
+        }
     }
 
     @Override
     public void printPreOrder() {
-
+        if (root != null) {
+            System.out.print(root.data + " ");
+            root = root.left;
+            root = root.right;
+        }
     }
 
     @Override
     public void printPostOrder() {
-
+        if (root != null) {
+            root = root.left;
+            root = root.right;
+            System.out.print(root.data + " ");
+        }
     }
 
     @Override
     public boolean contains(Comparable data) {
+        if (root != null) {
+            GenericNode current = root;
+            while (current.data != null) {
+                if (data.compareTo(root.data) == -1)
+                    current = current.left;
+                else
+                    current = current.right;
+            }
+            return true;
+        }
         return false;
     }
 
     @Override
     public int size() {
-        return 0;
+        return size;
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return root == null;
     }
 
     @Override
     public void clear() {
-
+        root = null;
+        size = 0;
     }
 }
 

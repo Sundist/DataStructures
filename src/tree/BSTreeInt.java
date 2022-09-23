@@ -8,6 +8,7 @@ public class BSTreeInt implements TreeIntInterface {
     public void add(int data) {
         if (root == null) root = new Node(data);
         else root.add(data);
+        size++;
     }
 
     @Override
