@@ -1,5 +1,7 @@
 package tree;
 
+import tree.generic.GenericNode;
+
 public class BSTreeInt implements TreeIntInterface {
     private Node root;
     private int size;
@@ -13,6 +15,24 @@ public class BSTreeInt implements TreeIntInterface {
 
     @Override
     public boolean remove(int data) {
+        if (contains(data)) {
+            Node current = root;
+            while (current != null && current.data != data) {
+                if (data < root.data)
+                    current = current.left;
+                else
+                    current = current.right;
+            }
+            if (current.right != null) {
+                current.data = current.right.data;
+                current.right = null;
+            } else {
+                current.data = current.left.data;
+                current.left = null;
+            }
+            size--;
+            return true;
+        }
         return false;
     }
 

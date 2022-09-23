@@ -31,6 +31,7 @@ public class BSTreeGenericInt<T extends Comparable<T>> implements GenericTreeInt
                 current.data = current.left.data;
                 current.left = null;
             }
+            size--;
             return true;
         }
         return false;
