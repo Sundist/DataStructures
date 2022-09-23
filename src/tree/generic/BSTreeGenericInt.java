@@ -16,6 +16,18 @@ public class BSTreeGenericInt<T extends Comparable<T>> implements GenericTreeInt
 
     @Override
     public boolean remove(Comparable data) {
+        if (contains(data)) {
+            GenericNode current = root;
+            while (current != null && current.data != data) {
+                if (data.compareTo(root.data) == -1)
+                    current = current.left;
+                else
+                    current = current.right;
+            }
+            current.data = current.right.data;
+            current.right = null;
+            return true;
+        }
         return false;
     }
 
