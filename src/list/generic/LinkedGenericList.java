@@ -3,7 +3,7 @@ package list.generic;
 
 public class LinkedGenericList<T> extends AbstractGenericList<T> {
 
-    private GenericNode head;
+    private GenericNode<T> head;
 
     public LinkedGenericList() {
         init();
@@ -16,9 +16,9 @@ public class LinkedGenericList<T> extends AbstractGenericList<T> {
 
     @Override
     public void add(T data) {
-        GenericNode node = new GenericNode(data);
+        GenericNode<T> node = new GenericNode<T>(data);
         if (head != null) {
-            GenericNode iter = head;
+            GenericNode<T> iter = head;
             while (iter.next != null)
                 iter = iter.next;
             iter.next = node;
@@ -31,21 +31,21 @@ public class LinkedGenericList<T> extends AbstractGenericList<T> {
     @Override
     public boolean remove(T data) {
         if (head.data == data) {
-            GenericNode iter = head;
+            GenericNode<T> iter = head;
             head = iter.next;
             size--;
             return true;
         } else if (head.next != null) {
-            GenericNode iter = head;
+            GenericNode<T> iter = head;
             while (iter.next != null && iter.next.data != data) iter = iter.next;
-            GenericNode temp = iter;
+            GenericNode<T> temp = iter;
             temp.next = iter.next;
             iter.next = temp.next.next;
             temp.next.next = null;
             size--;
             return true;
         } else {
-            GenericNode iter = head;
+            GenericNode<T> iter = head;
             while (iter.next.data != data)
                 iter = iter.next;
             iter.next = null;
@@ -78,7 +78,7 @@ public class LinkedGenericList<T> extends AbstractGenericList<T> {
     @Override
     public int indexOf(T data) {
         int counter = 0;
-        GenericNode iter = head;
+        GenericNode<T> iter = head;
         if (head != null) {
             while (iter.data != data && iter.next != null) {
                 iter = iter.next;
@@ -87,19 +87,6 @@ public class LinkedGenericList<T> extends AbstractGenericList<T> {
             return counter;
         } else
             return -1;
-    }
-
-    @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        if (head != null)
-            return false;
-        else
-            return true;
     }
 
     @Override
