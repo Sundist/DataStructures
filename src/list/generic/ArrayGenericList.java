@@ -22,9 +22,9 @@ public class ArrayGenericList<T> extends AbstractGenericList<T> {
 
     @Override
     public void add(T data) {
-        if (size >= array.length) {
+        if (size >= array.length)
             array = Arrays.copyOf(array, array.length * 2);
-        }
+
         array[size++] = data;
     }
 
@@ -33,9 +33,9 @@ public class ArrayGenericList<T> extends AbstractGenericList<T> {
         if (!isEmpty() && contains(data)) {
             int i = 0;
             while (array[i] != data) i++;
-            for (int j = i; j < size - 1; j++) {
+            for (int j = i; j < size - 1; j++)
                 array[j] = array[j + 1];
-            }
+
             size--;
             return true;
         }
@@ -44,7 +44,11 @@ public class ArrayGenericList<T> extends AbstractGenericList<T> {
 
     @Override
     public T removeIndex(int index) {
-        return array[index];
+        T removed = array[index];
+        for (int i = index; i < size - 1; i++)
+            array[i] = array[i + 1];
+        size--;
+        return removed;
     }
 
     @Override
@@ -64,18 +68,15 @@ public class ArrayGenericList<T> extends AbstractGenericList<T> {
 
     @Override
     public int indexOf(T data) {
-        return 0;
+        int counter = 0;
+        for (T element : array) {
+            counter++;
+            if (data == element)
+                return counter;
+        }
+        return -1;
     }
 
-    @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return array[0] == null;
-    }
 
     @Override
     public void clear() {
