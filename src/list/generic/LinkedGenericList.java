@@ -1,7 +1,7 @@
 package list.generic;
 
 
-public class LinkedGenericList extends AbstractGenericList {
+public class LinkedGenericList<T> extends AbstractGenericList<T> {
 
     private GenericNode head;
 
@@ -15,7 +15,7 @@ public class LinkedGenericList extends AbstractGenericList {
     }
 
     @Override
-    public void add(Comparable data) {
+    public void add(T data) {
         GenericNode node = new GenericNode(data);
         if (head != null) {
             GenericNode iter = head;
@@ -29,7 +29,7 @@ public class LinkedGenericList extends AbstractGenericList {
     }
 
     @Override
-    public boolean remove(Comparable data) {
+    public boolean remove(T data) {
         if (head.data == data) {
             GenericNode iter = head;
             head = iter.next;
@@ -55,28 +55,28 @@ public class LinkedGenericList extends AbstractGenericList {
     }
 
     @Override
-    public Comparable removeIndex(int index) {
-        return Integer.MIN_VALUE;
+    public T removeIndex(int index) {
+        return null;
     }
 
     @Override
-    public Comparable get(int index) {
+    public T get(int index) {
         if (index > size)
             throw new IndexOutOfBoundsException("Girdiğiniiz index eleman sayısından fazladır.");
-        GenericNode iter = head;
+        GenericNode<T> iter = head;
         for (int i = 0; i < index && iter.next != null; i++)
             iter = iter.next;
 
-        return (Integer) iter.data;
+        return iter.data;
     }
 
     @Override
-    public boolean contains(Comparable data) {
+    public boolean contains(T data) {
         return false;
     }
 
     @Override
-    public int indexOf(Comparable data) {
+    public int indexOf(T data) {
         int counter = 0;
         GenericNode iter = head;
         if (head != null) {

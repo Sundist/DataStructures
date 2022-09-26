@@ -2,6 +2,8 @@ package tree;
 
 import tree.generic.GenericNode;
 
+import java.util.Stack;
+
 public class BSTreeInt implements TreeIntInterface {
     private Node root;
     private int size;
@@ -9,31 +11,46 @@ public class BSTreeInt implements TreeIntInterface {
     @Override
     public void add(int data) {
         if (root == null) root = new Node(data);
-        else root.add(data);
-        size++;
+        else add(root, data);
+    }
+
+    private void add(Node node, int data) {
+        if (data < node.data) {
+            if (node.left != null) add(node.left, data);
+            else {
+                node.left = new Node(data);
+                size++;
+            }
+        } else if (data > node.data) {
+            if (node.right != null) add(node.right, data);
+            else {
+                node.right = new Node(data);
+                size++;
+            }
+        }
     }
 
     @Override
     public boolean remove(int data) {
-        if (contains(data)) {
-            Node current = root;
-            while (current != null && current.data != data) {
-                if (data < root.data)
-                    current = current.left;
-                else
-                    current = current.right;
-            }
-            if (current.right != null) {
-                current.data = current.right.data;
-                current.right = null;
-            } else {
-                current.data = current.left.data;
-                current.left = null;
-            }
-            size--;
-            return true;
+        Node current = root;
+        while (current != null && current.data != data) {
+            if (data < root.data)
+                current = current.left;
+            else
+                current = current.right;
         }
-        return false;
+        if (current == null)
+            return false;
+
+        if (current.right != null) {
+            current.data = current.right.data;
+            current.right = null;
+        } else {
+            current.data = current.left.data;
+            current.left = null;
+        }
+        size--;
+        return true;
     }
 
     @Override
@@ -68,13 +85,16 @@ public class BSTreeInt implements TreeIntInterface {
 
     @Override
     public void printPostOrder() {
-        if (root != null) {
-            root = root.left;
-            root = root.right;
-            System.out.print(root.data + " ");
-        }
+        printPostOrder(root);
     }
 
+    private void printPostOrder(Node root) {
+        if (root != null) {
+            printPostOrder(root.left);
+            printPostOrder(root.right);
+            System.out.println(root.data);
+        }
+    }
 
     @Override
     public int size() {
@@ -105,15 +125,4 @@ class Node {
     Node(int data) {
         this.data = data;
     }
-
-    public void add(int data) {
-        if (data < this.data) {
-            if (left != null) this.left.add(data);
-            else left = new Node(data);
-        } else if (data > this.data) {
-            if (right != null) this.right.add(data);
-            else right = new Node(data);
-        }
-    }
-
 }

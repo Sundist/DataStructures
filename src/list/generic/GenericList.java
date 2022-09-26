@@ -1,6 +1,6 @@
 package list.generic;
 
-public interface GenericList<T extends Comparable<T>> {
+public interface GenericList<T> {
     void add(T data);
 
     boolean remove(T data);

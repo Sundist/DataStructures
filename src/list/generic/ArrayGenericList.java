@@ -2,34 +2,34 @@ package list.generic;
 
 import java.util.Arrays;
 
-public class ArrayGenericList extends AbstractGenericList {
+public class ArrayGenericList<T> extends AbstractGenericList<T> {
 
     private final static int DEFAULT_CAPACITY = 16;
-    private Integer[] array;
+    private T[] array;
 
     public ArrayGenericList() {
         init();
     }
 
     public ArrayGenericList(int capacity) {
-        array = new Integer[capacity];
+        array = (T[]) new Object[capacity];
     }
 
     @Override
     protected void init() {
-        array = new Integer[DEFAULT_CAPACITY];
+        array = (T[]) new Object[DEFAULT_CAPACITY];
     }
 
     @Override
-    public void add(Comparable data) {
+    public void add(T data) {
         if (size >= array.length) {
             array = Arrays.copyOf(array, array.length * 2);
         }
-        array[size++] = (Integer) data;
+        array[size++] = data;
     }
 
     @Override
-    public boolean remove(Comparable data) {
+    public boolean remove(T data) {
         if (!isEmpty() && contains(data)) {
             int i = 0;
             while (array[i] != data) i++;
@@ -43,17 +43,17 @@ public class ArrayGenericList extends AbstractGenericList {
     }
 
     @Override
-    public Comparable removeIndex(int index) {
+    public T removeIndex(int index) {
         return array[index];
     }
 
     @Override
-    public Comparable get(int index) {
+    public T get(int index) {
         return array[index];
     }
 
     @Override
-    public boolean contains(Comparable data) {
+    public boolean contains(T data) {
         if (array[0] != null) {
             for (int i = 0; i < size; i++) {
                 if (array[i] == data) return true;
@@ -63,8 +63,8 @@ public class ArrayGenericList extends AbstractGenericList {
     }
 
     @Override
-    public int indexOf(Comparable data) {
-        return super.indexOf(data);
+    public int indexOf(T data) {
+        return 0;
     }
 
     @Override

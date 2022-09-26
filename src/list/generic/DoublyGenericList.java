@@ -1,9 +1,9 @@
 package list.generic;
 
-public class DoublyGenericList extends AbstractGenericList {
+public class DoublyGenericList<T> extends AbstractGenericList<T> {
 
-    private DoublyNode head;
-    private DoublyNode tail;
+    private DoublyNode<T> head;
+    private DoublyNode<T> tail;
 
     public DoublyGenericList() {
         init();
@@ -16,14 +16,14 @@ public class DoublyGenericList extends AbstractGenericList {
     }
 
     @Override
-    public void add(Comparable data) {
-        DoublyNode node = new DoublyNode(data);
+    public void add(T data) {
+        DoublyNode<T> node = new DoublyNode(data);
         if (head == null) {
             head = node;
             node.next = null;
             node.prev = tail;
         } else {
-            DoublyNode iter = head;
+            DoublyNode<T> iter = head;
             while (iter.next != null) iter = iter.next;
             iter.next = node;
             node.prev = iter;
@@ -33,25 +33,25 @@ public class DoublyGenericList extends AbstractGenericList {
     }
 
     @Override
-    public boolean remove(Comparable data) {
+    public boolean remove(T data) {
         if (head.data == data) {
-            DoublyNode iter = head;
+            DoublyNode<T> iter = head;
             head = iter.next;
             size--;
             return true;
         } else if (head.next != null) {
-            DoublyNode iter = head;
+            DoublyNode<T> iter = head;
             while (iter.data != data && iter.next != null) iter = iter.next;
-            DoublyNode temp = iter.next;
+            DoublyNode<T> temp = iter.next;
             iter.next = temp.next;
             temp.next.prev = iter;
             size--;
             return true;
         } else {
-            DoublyNode iter = head;
+            DoublyNode<T> iter = head;
             while (iter.next.data != data)
                 iter = iter.next;
-            DoublyNode temp = iter.next;
+            DoublyNode<T> temp = iter.next;
             temp.prev = null;
             iter.next = temp.next;
             size--;
@@ -61,26 +61,26 @@ public class DoublyGenericList extends AbstractGenericList {
     }
 
     @Override
-    public Comparable removeIndex(int index) {
+    public T removeIndex(int index) {
         if (head != null) {
-            return Integer.MAX_VALUE;
+            return null;
         }
-        return Integer.MIN_VALUE;
+        return null;
     }
 
     @Override
-    public Comparable get(int index) {
+    public T get(int index) {
         if (head != null) {
-            DoublyNode iter = head;
+            DoublyNode<T> iter = head;
             for (int i = 0; i < index && iter.next != null; i++)
                 iter = iter.next;
-            return (Integer) iter.data;
+            return iter.data;
         }
-        return Integer.MIN_VALUE;
+        return null;
     }
 
     @Override
-    public boolean contains(Comparable data) {
+    public boolean contains(T data) {
         if (head != null) {
             DoublyNode iter = head;
             while (iter.next != null && iter.data != data) iter = iter.next;
@@ -91,18 +91,8 @@ public class DoublyGenericList extends AbstractGenericList {
     }
 
     @Override
-    public int indexOf(Comparable data) {
+    public int indexOf(T data) {
         return 0;
-    }
-
-    @Override
-    public int size() {
-        return size;
-    }
-
-    @Override
-    public boolean isEmpty() {
-        return head == null;
     }
 
     @Override
