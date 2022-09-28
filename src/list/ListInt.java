@@ -10,4 +10,5 @@ public interface ListInt {
     int size();
     boolean isEmpty();
     void clear();
+
 }

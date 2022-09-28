@@ -8,31 +8,33 @@ import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        Sort[] sortAlgorithms = {new InsertionSort(), new SelectionSort(), new BubbleSort(),
-                new QuickSort(), new MergeSort()};
+        Sort[] sortAlgorithms = {/*new InsertionSort(), new SelectionSort(), new BubbleSort(),*/
+                 new MergeSort(), new HeapSort(), new QuickSort()};
         @SuppressWarnings("unchecked")
-        SortG<Integer>[] sortGAlgorithms = new SortG[]{new InsertionGSort<Integer>(), new SelectionGSort<Integer>(),
-                new BubbleGSort<Integer>(), new QuickGSort<Integer>(), new MergeGSort<Integer>()};
+        SortG<Integer>[] sortGAlgorithms = new SortG[]{/*new InsertionGSort<Integer>(), new SelectionGSort<Integer>(),
+                new BubbleGSort<Integer>(),*/ new QuickGSort<Integer>(), new MergeGSort<Integer>()};
 
-        for (int N = 1000; N <= 100_000; N *= 10) {
+        for (int N = 1000; N <= 10_000_000; N *= 10) {
             long start, end;
             start = System.currentTimeMillis();
             int[] array = new Random().ints(N, 0, Integer.MAX_VALUE).toArray();
             end = System.currentTimeMillis();
             System.out.println("\n" + N + " array generation time: " + (end - start));
 
-            int[] a = array.clone();
+            int[] javaSortedArray = array.clone();
             start = System.currentTimeMillis();
-            Arrays.sort(a);
+            Arrays.sort(javaSortedArray);
             end = System.currentTimeMillis();
             System.out.println("Execution Time Java Sort: " + (end - start));
 
+            int[] sortedArray;
             for (Sort sortAlgo : sortAlgorithms) {
-                a = array.clone();
+                sortedArray = array.clone();
                 start = System.currentTimeMillis();
-                sortAlgo.sort(a);
+                sortAlgo.sort(sortedArray);
                 end = System.currentTimeMillis();
                 System.out.println("Execution Time " + sortAlgo.name() + ": " + (end - start));
+                System.out.println(Arrays.equals(sortedArray, javaSortedArray));
             }
 
             start = System.currentTimeMillis();
@@ -43,17 +45,18 @@ public class Main {
             end = System.currentTimeMillis();
             System.out.println("\n" + N + " Integer array generation time: " + (end - start));
 
-            Integer[] ia = intArray.clone();
+            Integer[] javaSortedArrayGeneric = intArray.clone();
             start = System.currentTimeMillis();
-            Arrays.sort(a);
+            Arrays.sort(javaSortedArrayGeneric);
             end = System.currentTimeMillis();
             System.out.println("Execution Time Java Sort: " + (end - start));
             for (SortG<Integer> sortGAlgo : sortGAlgorithms) {
-                ia = intArray.clone();
+                Integer[] sortedArrayGeneric = intArray.clone();
                 start = System.currentTimeMillis();
-                sortGAlgo.sort(ia);
+                sortGAlgo.sort(sortedArrayGeneric);
                 end = System.currentTimeMillis();
                 System.out.println("Execution Time " + sortGAlgo.name() + ": " + (end - start));
+                assert Arrays.equals(sortedArrayGeneric, javaSortedArrayGeneric);
             }
         }
 

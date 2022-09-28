@@ -72,4 +72,10 @@ public class ArrayListInt extends AbstractListInt {
         }
         return -1;
     }
+
+    public void set(int index, int data) {
+        if (index >= size)
+            throw new IndexOutOfBoundsException("Girdiğiniiz index eleman sayısından fazladır.");
+        array[index] = data;
+    }
 }

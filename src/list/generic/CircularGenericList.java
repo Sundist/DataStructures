@@ -45,7 +45,7 @@ public class CircularGenericList<T> extends ArrayGenericList<T> {
     public T removeIndex(int index) {
         if (head != null) {
             GenericNode<T> iter = head;
-            for (int i = 0; i < (int) index; i++)
+            for (int i = 0; i < index; i++)
                 iter = iter.next;
             GenericNode<T> temp = iter.next;
             iter.next = temp.next;
