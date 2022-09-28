@@ -1,28 +1,25 @@
 package tree.generic;
 
-import tree.generic.GenericNode;
 
-public class BSTreeGenericInt<T extends Comparable<T>> implements GenericTreeInterface {
+public class BSTreeGenericInt<T extends Comparable<T>> implements GenericTreeInterface<T> {
 
-    private GenericNode root;
+    private GenericNode<T> root;
     private int size;
 
     @Override
-    public void add(Comparable data) {
-        if (root == null) root = new GenericNode(data);
+    public void add(T data) {
+        if (root == null) root = new GenericNode<>(data);
         else root.add(data);
         size++;
     }
 
     @Override
-    public boolean remove(Comparable data) {
+    public boolean remove(T data) {
         if (contains(data)) {
-            GenericNode current = root;
+            GenericNode<T> current = root;
             while (current != null && current.data != data) {
-                if (data.compareTo(root.data) == -1)
-                    current = current.left;
-                else
-                    current = current.right;
+                if (data.compareTo(root.data) < 0) current = current.left;
+                else current = current.right;
             }
             if (current.right != null) {
                 current.data = current.right.data;
@@ -65,14 +62,12 @@ public class BSTreeGenericInt<T extends Comparable<T>> implements GenericTreeInt
     }
 
     @Override
-    public boolean contains(Comparable data) {
+    public boolean contains(T data) {
         if (root != null) {
-            GenericNode current = root;
+            GenericNode<T> current = root;
             while (current.data != null) {
-                if (data.compareTo(root.data) == -1)
-                    current = current.left;
-                else
-                    current = current.right;
+                if (data.compareTo(root.data) == -1) current = current.left;
+                else current = current.right;
             }
             return true;
         }

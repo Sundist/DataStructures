@@ -1,11 +1,9 @@
 package tree.generic;
 
-import java.math.BigInteger;
-
-public class GenericNode<T> {
+public class GenericNode<T extends Comparable<T>> {
     T data;
-    GenericNode left;
-    GenericNode right;
+    GenericNode<T> left;
+    GenericNode<T> right;
 
     GenericNode() {
         data = null;
@@ -15,13 +13,13 @@ public class GenericNode<T> {
         this.data = data;
     }
 
-    public void add(Comparable data) {
-        if (data.compareTo(this.data) == -1) {
+    public void add(T data) {
+        if (data.compareTo(this.data) < 0) {
             if (left != null) this.left.add(data);
-            else left = new GenericNode(data);
-        } else if (data.compareTo(this.data) == 1) {
+            else left = new GenericNode<>(data);
+        } else if (data.compareTo(this.data) > 0) {
             if (right != null) this.right.add(data);
-            else right = new GenericNode(data);
+            else right = new GenericNode<>(data);
         }
     }
 

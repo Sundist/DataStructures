@@ -1,6 +1,6 @@
 package tree.generic;
 
-public interface GenericTreeInterface <T extends Comparable<T>> {
+public interface GenericTreeInterface <T> {
     void add(T data);
 
     boolean remove(T data);
