@@ -55,17 +55,27 @@ public class LinkedListInt extends AbstractListInt {
 
     @Override
     public int removeIndex(int index) {
-        if (index >= size)
+        if (index >= size || index < 0)
             throw new IndexOutOfBoundsException("Girdiğiniiz index eleman sayısından fazladır.");
+
+        if (index == 0) {
+            int data = head.data;
+            head = head.next;
+            size--;
+            return data;
+        }
+
+        Node parent = null;
         Node iter = head;
-        for (int i = 0; i < index; i++)
+        for (int i = 0; i < index; i++) {
+            parent = iter;
             iter = iter.next;
-        Node temp = iter;
-        temp.next = iter.next;
-        iter.next = temp.next.next;
-        temp.next.next = null;
+        }
+
+        parent.next = iter.next;
         size--;
-        return temp.next.data;
+        return iter.data;
+
     }
 
     @Override
