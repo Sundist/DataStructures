@@ -7,7 +7,7 @@ import java.util.Collections;
 
 public class HashTableInt {
 
-    private static final int DEFAULT_CAPAITY = 16;
+    private static final int DEFAULT_CAPACITY = 16;
     private static final double LOAD_FACTOR = 0.7;
 
     private LinkedListInt[] table;
@@ -16,7 +16,7 @@ public class HashTableInt {
 
 
     public HashTableInt() {
-        this(DEFAULT_CAPAITY);
+        this(DEFAULT_CAPACITY);
     }
 
     public HashTableInt(int capacity) {
@@ -82,7 +82,7 @@ public class HashTableInt {
     }
 
     public void clean() {
-        table = new LinkedListInt[DEFAULT_CAPAITY];
+        table = new LinkedListInt[DEFAULT_CAPACITY];
         size = 0;
     }
 
